@@ -12,20 +12,16 @@ export PYTHON=
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 export CFLAGS="$CFLAGS -fPIC -I$PREFIX/include"
 
-BASE_DIR="$(pwd)"
-SRC_DIR=$BASE_DIR/metview/src/codes_ui
-BUILD_DIR=$BASE_DIR/../build
-mkdir $BUILD_DIR
-cd $BUILD_DIR
+CODESUI_SRC_DIR="$SRC_DIR/metview/src/codes_ui"
+mkdir ../build && cd ../build
 
 # Needed for build
 export TMPDIR=/tmp/
 
-cmake $SRC_DIR \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX \
-    -DCMAKE_MODULE_PATH=$BASE_DIR/cmake
+cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+      -D CMAKE_MODULE_PATH=$SRC_DIR/cmake \
+      $CODESUI_SRC_DIR
 
 make -j $CPU_COUNT
-eval ${LIBRARY_SEARCH_VAR}=$PREFIX/lib
 
 make install
