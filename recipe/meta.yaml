@@ -11,6 +11,7 @@ source:
 
 build:
   number: 1003
+  skip: True  # [(win and vc<14)]
   detect_binary_files_with_prefix: true
 
 requirements:
