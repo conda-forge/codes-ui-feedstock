@@ -9,8 +9,13 @@ cxx_compiler:
 pin_run_as_build:
   qt:
     max_pin: x.x
+  vc:
+    max_pin: x
 qt:
 - '5.6'
+vc:
+- '14'
 zip_keys:
-- - c_compiler
+- - vc
+  - c_compiler
   - cxx_compiler
