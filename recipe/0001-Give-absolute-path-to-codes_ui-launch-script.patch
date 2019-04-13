@@ -1,0 +1,25 @@
+From 21fe75dec08a025cdb74740247a192d389b4db45 Mon Sep 17 00:00:00 2001
+From: Daniel Tipping <daniel@oldreliable.tech>
+Date: Sat, 13 Apr 2019 17:22:03 +0100
+Subject: [PATCH] Give absolute path to codes_ui launch script
+
+---
+ metview/src/codes_ui/codes_ui.bat | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/metview/src/codes_ui/codes_ui.bat b/metview/src/codes_ui/codes_ui.bat
+index 0e20e83..61a3d6e 100644
+--- a/metview/src/codes_ui/codes_ui.bat
++++ b/metview/src/codes_ui/codes_ui.bat
+@@ -15,4 +15,7 @@
+ set args=%*
+ set args=%args:\=/%
+ 
+-bash -c "codes_ui %args%"
++set codes_ui_dir=%~dp0
++set codes_ui_dir=%codes_ui_dir:\=/%
++
++bash -c "%codes_ui_dir%/codes_ui %args%"
+-- 
+2.19.1
+
