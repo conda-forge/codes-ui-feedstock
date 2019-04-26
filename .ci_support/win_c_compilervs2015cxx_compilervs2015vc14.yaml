@@ -12,7 +12,7 @@ pin_run_as_build:
   vc:
     max_pin: x
 qt:
-- '5.6'
+- '5.9'
 vc:
 - '14'
 zip_keys:
