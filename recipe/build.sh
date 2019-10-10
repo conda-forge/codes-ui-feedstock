@@ -23,6 +23,7 @@ cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
       -D CMAKE_MODULE_PATH=$SRC_DIR/cmake \
       $CODESUI_SRC_DIR
 
-make VERBOSE=1 -j $CPU_COUNT
+#make -j $CPU_COUNT
+make VERBOSE=1 
 
 make install
