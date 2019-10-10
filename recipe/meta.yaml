@@ -30,12 +30,10 @@ requirements:
     - {{ cdt('libxext') }}  # [linux]
   host:
     - eccodes
-    - magics
-    - qt
+    - qt >=5.12
   run:
     - eccodes
-    - magics
-    - qt
+    - qt >=5.12
 
 test:
   commands:
