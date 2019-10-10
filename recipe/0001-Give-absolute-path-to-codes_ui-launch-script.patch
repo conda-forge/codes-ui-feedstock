@@ -4,13 +4,13 @@ Date: Sat, 13 Apr 2019 17:22:03 +0100
 Subject: [PATCH] Give absolute path to codes_ui launch script
 
 ---
- metview/src/codes_ui/codes_ui.bat | 5 ++++-
+ codes_ui.bat | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/metview/src/codes_ui/codes_ui.bat b/metview/src/codes_ui/codes_ui.bat
+diff --git acodes_ui.bat bcodes_ui.bat
 index 0e20e83..61a3d6e 100644
---- a/metview/src/codes_ui/codes_ui.bat
-+++ b/metview/src/codes_ui/codes_ui.bat
+--- a/codes_ui.bat
++++ b/codes_ui.bat
 @@ -15,4 +15,7 @@
  set args=%*
  set args=%args:\=/%
