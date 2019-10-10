@@ -5,7 +5,7 @@ package:
   version: {{ codes_ui_version }}
 
 source:
-  url: https://confluence.ecmwf.int/download/attachments/92333258/codes_ui-{{ codes_ui_version }}-Source.tar.gz?api=v2
+  url: https://confluence.ecmwf.int/download/attachments/92333258/codes_ui-{{ codes_ui_version }}-Source.tar.gz
   sha256: fef993a90e7e22fb81227cd8067bd263d4fe97294cb561ae253e1a01ef28791b
   patches:
     - 0002-Minimum-CMake-version-of-3.6.0.patch
