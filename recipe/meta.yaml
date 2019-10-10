@@ -31,9 +31,11 @@ requirements:
   host:
     - eccodes
     - qt >=5.12
+    - zlib
   run:
     - eccodes
     - qt >=5.12
+    - zlib
 
 test:
   commands:
