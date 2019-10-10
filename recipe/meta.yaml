@@ -10,7 +10,6 @@ source:
   patches:
     - 0002-Minimum-CMake-version-of-3.6.0.patch
 
-
 build:
   number: 1
   skip: True  # [(win and vc<14)]
