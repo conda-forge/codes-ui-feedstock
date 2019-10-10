@@ -1,0 +1,22 @@
+From 27b54d266e63fc2d79a09b9f771f2b238b4aa700 Mon Sep 17 00:00:00 2001
+From: Iain Russell <Iain.Russell@ecmwf.int>
+Date: Thu, 10 Oct 2019 11:25:33 +0100
+Subject: [PATCH] CODESUI: Minimum CMake version of 3.6.0
+
+---
+ src/codes_ui/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/codes_ui/CMakeLists.txt b/src/codes_ui/CMakeLists.txt
+index 8442162e..ab7bf3dc 100644
+--- a/src/codes_ui/CMakeLists.txt
++++ b/src/codes_ui/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-cmake_minimum_required( VERSION 2.8.4 FATAL_ERROR )
++cmake_minimum_required( VERSION 3.6.0 FATAL_ERROR )
+ 
+ project( codes_ui C CXX )
+ 
+-- 
+2.13.7
+

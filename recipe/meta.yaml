@@ -10,6 +10,7 @@ source:
   sha256: f0eee5fc7a546387af8b02cb345e7246f6611ecf55683cee2bdc37b3abba2ec5
   patches:
     - 0001-Give-absolute-path-to-codes_ui-launch-script.patch
+    - 0002-Minimum-CMake-version-of-3.6.0.patch
 
 build:
   number: 1006
@@ -55,4 +56,4 @@ extra:
     - dtip
     - StephanSiemen
     - iainrussell
-    - sk-ec
+    - sandorkertesz
