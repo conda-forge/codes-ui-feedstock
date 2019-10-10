@@ -6,7 +6,7 @@ export PYTHON=
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib -Wl,-rpath,$PREFIX/lib"
 export CFLAGS="$CFLAGS -fPIC -I$PREFIX/include"
 
-CODESUI_SRC_DIR="$SRC_DIR/metview/src/codes_ui"
+CODESUI_SRC_DIR="$SRC_DIR"
 mkdir ../build && cd ../build
 
 # Needed for build
