@@ -9,6 +9,7 @@ source:
   sha256: fef993a90e7e22fb81227cd8067bd263d4fe97294cb561ae253e1a01ef28791b
   patches:
     - 0002-Minimum-CMake-version-of-3.6.0.patch
+    - 0003-fix-path-to-Windows-startup-script-from-tarb.patch
 
 build:
   number: 1
