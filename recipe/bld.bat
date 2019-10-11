@@ -11,7 +11,7 @@ cmake -G "NMake Makefiles" ^
       -D CMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -D CMAKE_MODULE_PATH=%CMAKE_MODULE_PATH% ^
       -D CMAKE_BUILD_TYPE=Release ^
-      %SRC_DIR%/metview/src/codes_ui
+      %SRC_DIR%
 if errorlevel 1 exit 1
 
 nmake
