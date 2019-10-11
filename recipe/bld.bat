@@ -1,10 +1,10 @@
-mkdir ../build
-cd ../build
+mkdir ..\build
+cd ..\build
 
 set TMPDIR=%LOCALAPPDATA%\Temp
 
 :: replace backslash with forward slash to avoid an 'Invalid character escape' error.
-set CMAKE_MODULE_PATH=%SRC_DIR%/cmake
+set CMAKE_MODULE_PATH=%SRC_DIR%\cmake
 set CMAKE_MODULE_PATH=%CMAKE_MODULE_PATH:\=/%
 
 cmake -G "NMake Makefiles" ^
