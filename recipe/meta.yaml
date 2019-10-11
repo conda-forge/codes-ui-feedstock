@@ -30,8 +30,7 @@ requirements:
     - {{ cdt('libxext') }}  # [linux]
   host:
     - eccodes
-    - qt >=5.12  # [not win]
-    - qt 5.12.4  # [win]
+    - qt >=5.12
     - zlib
   run:
     - eccodes
