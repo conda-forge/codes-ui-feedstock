@@ -7,15 +7,15 @@ channel_targets:
 cxx_compiler:
 - vs2015
 pin_run_as_build:
-  qt:
-    max_pin: x.x
   vc:
     max_pin: x
-qt:
-- '5.6'
+  zlib:
+    max_pin: x.x
 vc:
 - '14'
 zip_keys:
 - - vc
   - c_compiler
   - cxx_compiler
+zlib:
+- '1.2'
