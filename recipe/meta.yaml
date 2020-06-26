@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://confluence.ecmwf.int/download/attachments/30048389/codes_ui-{{ codes_ui_version }}-Source.tar.gz
-  sha256: a2859106efab6c6bb8c7038019dd18c7953828ec072006db71cd1921e41dceaa
+  sha256: 72379e9db6ce4bcfa12ac9e28eb21235bca724835d720f6af8cd52341b82a225
   patches:
 
 
