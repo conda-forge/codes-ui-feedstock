@@ -28,7 +28,7 @@ requirements:
     - {{ cdt('libxxf86vm') }}  # [linux]
     - {{ cdt('libxcb') }}  # [linux]
     - {{ cdt('libxext') }}  # [linux]
-    - sed  # [win]
+    - m2-sed  # [win]
   host:
     - eccodes
     - qt >=5.12
