@@ -20,6 +20,7 @@ mkdir ../build && cd ../build
 export TMPDIR=/tmp/
 
 cmake -D CMAKE_INSTALL_PREFIX=$PREFIX \
+      -D CMAKE_BUILD_TYPE=Release \
       -D CMAKE_MODULE_PATH=$SRC_DIR/cmake \
       $CODESUI_SRC_DIR
 
