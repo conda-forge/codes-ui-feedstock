@@ -11,7 +11,7 @@ source:
 
 
 build:
-  number: 0
+  number: 1
   skip: True  # [(win and vc<14)]
   detect_binary_files_with_prefix: true
 
@@ -31,17 +31,15 @@ requirements:
     - m2-sed  # [win]
   host:
     - eccodes
-    - qt >=5.12
+    - qt-main >=5.12
     - zlib
   run:
     - eccodes
-    - qt >=5.12
+    - qt-main >=5.12
     - zlib
 
 test:
   commands:
-    - conda inspect linkages -p $PREFIX codes-ui  # [not win]
-    - conda inspect objects -p $PREFIX codes-ui  # [osx]
 
 about:
   home: https://confluence.ecmwf.int/display/METV/CodesUI
