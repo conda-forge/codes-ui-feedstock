@@ -1,4 +1,4 @@
-{% set codes_ui_version = "1.7.3" %}
+{% set codes_ui_version = "1.8.0" %}
 
 package:
   name: codes-ui
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://confluence.ecmwf.int/download/attachments/92333258/codes_ui-{{ codes_ui_version }}-Source.tar.gz
-  sha256: 143c1c1bc675346a8646534fb51b11fb3dc20c6369f61299da5dd9b1578a03d5
+  sha256: 58a5d6a5c01d139bbd73fdb529c8b66d437120a53ebaf642dfa030b2838a26f0
   patches:
 
 
