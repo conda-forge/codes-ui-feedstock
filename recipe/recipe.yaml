@@ -32,7 +32,7 @@ requirements:
 
 tests:
   - script:
-      - echo "Placeholder"
+      - codes_ui --help
 
 about:
   license: Apache-2.0
