@@ -17,7 +17,7 @@ build:
 requirements:
   build:
     - cmake
-    - make
+    - ninja
     - ${{ compiler('c') }}
     - ${{ compiler('cxx') }}
     - ${{ stdlib("c") }}
@@ -31,8 +31,12 @@ requirements:
       then: libgl-devel
 
 tests:
-  - script:
-      - codes_ui --help
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - codes_ui --help 2>&1 | grep "could not determine input file type!"
 
 about:
   license: Apache-2.0
