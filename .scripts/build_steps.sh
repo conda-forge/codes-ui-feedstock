@@ -20,6 +20,7 @@ export PYTHONUNBUFFERED=1
 export RECIPE_ROOT="${RECIPE_ROOT:-/home/conda/recipe_root}"
 export CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
 export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
+export RATTLER_CACHE_DIR="${FEEDSTOCK_ROOT}/build_artifacts/pkg_cache"
 
 cat >~/.condarc <<CONDARC
 
@@ -31,17 +32,27 @@ pkgs_dirs:
 solver: libmamba
 
 CONDARC
+pushd "${FEEDSTOCK_ROOT}"
+arch=$(uname -m)
+if [[ "$arch" == "x86_64" ]]; then
+  arch="64"
+fi
+sed -i.bak -e "s/platforms = .*/platforms = [\"linux-${arch}\"]/" -e "s/# __PLATFORM_SPECIFIC_ENV__ =/docker-build-linux-$arch =/" pixi.toml
+echo "Creating environment"
+PIXI_CACHE_DIR=/opt/conda pixi install --environment docker-build-linux-$arch
+pixi list
+echo "Activating environment"
+eval "$(pixi shell-hook --environment docker-build-linux-$arch)"
+mv pixi.toml.bak pixi.toml
+popd
 export CONDA_LIBMAMBA_SOLVER_NO_CHANNELS_FROM_INSTALLED=1
-
-mamba install --update-specs --yes --quiet --channel conda-forge --strict-channel-priority \
-    pip mamba conda-build conda-forge-ci-setup=4 "conda-build>=24.1"
-mamba update --update-specs --yes --quiet --channel conda-forge --strict-channel-priority \
-    pip mamba conda-build conda-forge-ci-setup=4 "conda-build>=24.1"
 
 # set up the condarc
 setup_conda_rc "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 source run_conda_forge_build_setup
+
+
 
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
@@ -55,24 +66,20 @@ if [[ -f "${FEEDSTOCK_ROOT}/LICENSE.txt" ]]; then
 fi
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
-    if [[ "x${BUILD_OUTPUT_ID:-}" != "x" ]]; then
-        EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --output-id ${BUILD_OUTPUT_ID}"
-    fi
-    conda debug "${RECIPE_ROOT}" -m "${CI_SUPPORT}/${CONFIG}.yaml" \
-        ${EXTRA_CB_OPTIONS:-} \
-        --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml"
-
-    # Drop into an interactive shell
-    /bin/bash
+    echo "rattler-build currently doesn't support debug mode"
 else
-    conda-build "${RECIPE_ROOT}" -m "${CI_SUPPORT}/${CONFIG}.yaml" \
-        --suppress-variables ${EXTRA_CB_OPTIONS:-} \
-        --clobber-file "${CI_SUPPORT}/clobber_${CONFIG}.yaml" \
-        --extra-meta flow_run_id="${flow_run_id:-}" remote_url="${remote_url:-}" sha="${sha:-}"
+
+    rattler-build build --recipe "${RECIPE_ROOT}" \
+     -m "${CI_SUPPORT}/${CONFIG}.yaml" \
+     ${EXTRA_CB_OPTIONS:-} \
+     --target-platform "${HOST_PLATFORM}" \
+     --extra-meta flow_run_id="${flow_run_id:-}" \
+     --extra-meta remote_url="${remote_url:-}" \
+     --extra-meta sha="${sha:-}"
     ( startgroup "Inspecting artifacts" ) 2> /dev/null
 
-    # inspect_artifacts was only added in conda-forge-ci-setup 4.6.0
-    command -v inspect_artifacts >/dev/null 2>&1 && inspect_artifacts || echo "inspect_artifacts needs conda-forge-ci-setup >=4.6.0"
+    # inspect_artifacts was only added in conda-forge-ci-setup 4.9.4
+    command -v inspect_artifacts >/dev/null 2>&1 && inspect_artifacts --recipe-dir "${RECIPE_ROOT}" -m "${CONFIG_FILE}" || echo "inspect_artifacts needs conda-forge-ci-setup >=4.9.4"
 
     ( endgroup "Inspecting artifacts" ) 2> /dev/null
     ( startgroup "Validating outputs" ) 2> /dev/null

@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  version: "1.8.2"
+
+package:
+  name: codes-ui
+  version: ${{ version }}
+
+source:
+  url: https://confluence.ecmwf.int/download/attachments/92333258/codes_ui-${{ version }}-Source.tar.gz
+  sha256: 2bccc3191e2e1f04f44ebb417839bbaaee20c51ddf1bc4724c9db8da136b6ed3
+  patches:
+    - if: win
+      then:
+        - fix_popen_windows.patch
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - ninja
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: win
+      then: m2-sed
+  host:
+    - eccodes
+    - qt6-main
+    - zlib
+    - if: linux
+      then: libgl-devel
+
+tests:
+  - requirements:
+      run:
+        - if: win
+          then: m2-grep
+    script:
+      - codes_ui --help 2>&1 | grep "could not determine input file type!"
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: ECMWF CodesUI Copyright 2007-2021 ECMWF.
+  homepage: https://confluence.ecmwf.int/display/METV/CodesUI
+
+extra:
+  recipe-maintainers:
+    - dtip
+    - iainrussell
+    - sandorkertesz
