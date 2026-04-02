@@ -1,0 +1,17 @@
+
+iff --git a/src/libMetview/BufrMetaData.cc b/src/libMetview/BufrMetaData.cc
+index 1234567..89abcd0 100644
+--- a/src/libMetview/BufrMetaData.cc
++++ b/src/libMetview/BufrMetaData.cc
+@@ -1,3 +1,13 @@
++// Windows/MSVC fix: popen() is POSIX-only. MSVC provides _popen/_pclose.
++#ifdef _WIN32
++#include <stdio.h>
++#ifndef popen
++#define popen  _popen
++#endif
++#ifndef pclose
++#define pclose _pclose
++#endif
++#endif
++
