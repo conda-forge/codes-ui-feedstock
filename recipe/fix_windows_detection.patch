@@ -1,0 +1,13 @@
+
+diff --git a/src/libMetview/MvWindef.h b/src/libMetview/MvWindef.h
+index abc1234..def5678 100644
+--- a/src/libMetview/MvWindef.h
++++ b/src/libMetview/MvWindef.h
+@@ -6,7 +6,7 @@
+ 
+ /* Microsoft Windows Visual Studio support */
+-#if defined(_WIN32) && defined(_MSC_VER)
++#if defined(_WIN32)
+ #define METVIEW_ON_WINDOWS
+ 
+ #ifndef M_PI
