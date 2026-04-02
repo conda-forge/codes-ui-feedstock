@@ -13,7 +13,7 @@ source:
   patches:
     - if: win
       then:
-        - fix_popen_windows.patch
+        - fix_windows_detection.patch
 
 build:
   number: 0
